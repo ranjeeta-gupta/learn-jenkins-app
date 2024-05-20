@@ -5,7 +5,7 @@ agent any
         npm_config_cache = 'npm-cache'
     }
     stages {
-        stage('Build') {
+        /* stage('Build') {
              agent {
               docker {
                     image 'node:18-alpine'
@@ -23,7 +23,7 @@ agent any
                 ls -la
                 '''
             }
-        }
+        } */
         stage('test') {
             agent {
               docker {
