@@ -5,7 +5,7 @@ agent any
         stage('Build') {
              agent {
               docker {
-                    image 'node:8.5.5-alpine'
+                    image 'node:18-alpine'
                     reuseNode true
               }
             }
@@ -24,7 +24,7 @@ agent any
         stage('test') {
             agent {
               docker {
-                    image 'node:20.11.1-alpine3.19'
+                    image 'node:18-alpine'
                     reuseNode true
                    }
             }
