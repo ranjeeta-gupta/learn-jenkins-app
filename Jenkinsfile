@@ -15,8 +15,7 @@ agent any
                 node --version
                 npm --version
                 ls -la
-                npm config set registry http://registry.npmjs.org/
-                npm install
+                npm ci
                 npm run build 
                 ls -la
                 '''
