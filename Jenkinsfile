@@ -18,7 +18,7 @@ agent any
                 node --version
                 npm --version
                 ls -la
-                npm ci
+                npm install
                 npm run build 
                 ls -la
                 '''
