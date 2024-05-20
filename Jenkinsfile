@@ -1,13 +1,14 @@
 pipeline {
-    agent {
-      docker {
-                    image 'node:20.11.1-alpine3.19'
-                    reuseNode true
-            }
-    }
-
+   
+agent any 
     stages {
         stage('Build') {
+             agent {
+              docker {
+                    image 'node:20.11.1-alpine3.19'
+                    reuseNode true
+              }
+            }
             steps {
                 echo 'Building the application'
                 sh '''
@@ -21,6 +22,12 @@ pipeline {
             }
         }
         stage('test') {
+            agent {
+              docker {
+                    image 'node:20.11.1-alpine3.19'
+                    reuseNode true
+                   }
+            }
            steps {
              echo ' testing the application'
              sh '''
