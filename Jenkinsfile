@@ -13,7 +13,6 @@ agent any
               }
             }
             steps {
-                cleanWs()
                 echo 'Building the application'
                 sh '''
                 node --version
