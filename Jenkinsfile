@@ -5,7 +5,7 @@ agent any
         npm_config_cache = 'npm-cache'
     }
     stages {
-        /* stage('Build') {
+         stage('Build') {
              agent {
               docker {
                     image 'node:18-alpine'
@@ -13,6 +13,7 @@ agent any
               }
             }
             steps {
+                cleanWs()
                 echo 'Building the application'
                 sh '''
                 node --version
@@ -23,8 +24,8 @@ agent any
                 ls -la
                 '''
             }
-        } */
-        stage('test') {
+        } 
+        stage('Unit test') {
             agent {
               docker {
                     image 'node:18-alpine'
@@ -32,14 +33,32 @@ agent any
                    }
             }
            steps {
-             echo ' testing the application'
+             echo ' Unit Testing the Application'
              sh '''
              test -f build/index.html
              npm test
              '''
            }
         }
+
+          stage('E2E') {
+            agent {
+              docker {
+                    image 'mcr.microsoft.com/playwright:v1.44.0-jammy'
+                    reuseNode true
+                   }
+            }
+           steps {
+             echo ' E2E Application Testing'
+             sh '''
+             npm install serve 
+             node_modules/.bin/serve -s build
+             npx playwright test
+             '''
+           }
+        }
     }
+
 
     post {
       always {
