@@ -48,7 +48,7 @@ agent any
                    }
             }
            steps {
-             echo ' E2E Application Testing'
+             echo  'E2E Application Testing'
              sh '''
              npm install serve 
              node_modules/.bin/serve -s build
